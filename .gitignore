@@ -1,4 +1,4 @@
 *
-!/daily/*.cpp
-!/4offer/*.cpp
+!daily/*.cpp
+!4offer/*.cpp
 !README
