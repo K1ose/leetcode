@@ -32,13 +32,42 @@ using namespace std;
 class Solution
 {
 public:
+    /* 暴力模拟 */
     int maxProfit(vector<int> &prices)
     {
+        int max_profit = 0; /* 如果亏本的话就不抛售 */
+        int len = prices.size();
+        for (int i = 0; i < len; i++)
+            for (int j = i + 1; j < len; j++)
+                max_profit = max(max_profit, prices[j] - prices[i]);
+        return max_profit;
+    }
+
+    /* 找到最小股价（动态），计算这之后每天的利润，找到利润最大值 */
+    int maxProfit_min(vector<int> &prices)
+    {
+        int min_price = INT32_MAX;
+        int max_profit = 0;
+        for (auto x : prices)
+        {
+            min_price = min(min_price, x);
+            // if (x == min_price)
+            //     continue;
+            max_profit = max(max_profit, x - min_price);
+        }
+        return max_profit;
     }
 };
 
 int main(int argc, char const *argv[])
 {
+    int n;
+    cin >> n;
+    vector<int> nums(n);
+    for (int i = 0; i < n; i++)
+        cin >> nums[i];
 
+    Solution slt;
+    cout << slt.maxProfit_min(nums) << endl;
     return 0;
 }
