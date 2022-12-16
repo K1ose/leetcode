@@ -1,4 +1,6 @@
 *
+!ds/
+!ds/*.cpp
 !daily/
 !daily/*.cpp
 !4offer/
