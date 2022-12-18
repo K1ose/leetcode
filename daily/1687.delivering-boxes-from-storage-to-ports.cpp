@@ -74,7 +74,12 @@ class Solution
 public:
     int boxDelivering(vector<vector<int>> &boxes, int portsCount, int maxBoxes, int maxWeight)
     {
+        // TODO
     }
 };
 
-main
+int main(int argc, char const *argv[])
+{
+
+    return 0;
+}
