@@ -49,7 +49,8 @@ public:
     /// @param edges 存储结点到结点连通的边
     /// @param source 给定的起点
     /// @param destination 给定的终点
-    /// @return
+    /// @return true or false， 如果源节点到目的地能连通则返回true，不能连通则返回false
+
     bool validPath_bfs(int n, vector<vector<int>> &edges, int source, int destination)
     {
         vector<vector<int>> adj(n);
