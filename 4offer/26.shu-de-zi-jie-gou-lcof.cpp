@@ -54,7 +54,7 @@ public:
         if (A == nullptr || B == nullptr)
             return false;
         // TODO - 优先级高
-    }
+        }
 };
 
 int main(int argc, char const *argv[])

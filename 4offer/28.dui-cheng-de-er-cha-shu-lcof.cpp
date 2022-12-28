@@ -51,9 +51,23 @@ struct TreeNode
 class Solution
 {
 public:
-    bool isSymmetric(TreeNode *root)
+    bool check_dfs(TreeNode *left, TreeNode *right)
     {
-        // TODO
+        /* 如果两个子树结点都不存在，则返回 true */
+        if (!left && !right)
+            return true;
+        /* 如果两个子树结点一个存在另一个不存在，则返回 false */
+        if (!left || !right)
+            return false;
+        /* 满足对称的条件是：
+        1. 根节点值相等；
+        2. 根结点的左子树和右子树镜像对称 */
+        return left->val == right->val && check_dfs(left->left, right->right) && check_dfs(left->right, right->left);
+    }
+
+    bool isSymmetric_dfs(TreeNode *root)
+    {
+        return check_dfs(root, root);
     }
 };
 

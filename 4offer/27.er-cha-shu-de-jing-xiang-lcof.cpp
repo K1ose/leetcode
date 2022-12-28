@@ -48,36 +48,21 @@ struct TreeNode
 class Solution
 {
 public:
+    void dfs(TreeNode *node)
+    {
+        if (!node)
+            return;
+
+        TreeNode *temp_node = node->left;
+        node->left = node->right;
+        node->right = temp_node;
+
+        dfs(node->left);
+        dfs(node->right);
+    }
     TreeNode *mirrorTree(TreeNode *root)
     {
-        // TODO
-        queue<TreeNode *> q;
-        vector<int> ans;
-        if (root)
-        {
-            q.push(root);
-            while (!q.empty())
-            {
-
-                if (q.front()->right && q.front()->left)
-                {
-                    int temp = q.front()->right->val;
-                    q.front()->right->val = q.front()->left->val;
-                    q.front()->left->val = temp;
-                }
-
-                else if (q.front()->right)
-                {
-                    q.front()->left = q.front()->right;
-                    q.front()->right = nullptr;
-                }
-                else if (q.front()->left)
-                {
-                    q.front()->right = q.front()->left;
-                    q.front()->left = nullptr;
-                }
-            }
-        }
+        dfs(root);
         return root;
     }
 };
