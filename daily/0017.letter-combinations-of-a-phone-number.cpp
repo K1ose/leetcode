@@ -44,25 +44,16 @@ const pair<char, string> num2letter[] = {
 class Solution
 {
 public:
-    void backtrack(vector<string> ans, const pair<char, string> num2letter, string digits, int idx, string &each)
-    {
-        /* 边界条件 */
-        if (idx == digits.size())
-            ans.push_back(each);
-
-        else
-        {
-            char digit = digits[idx];
-            string letters = num2letter;
-        }
-    }
     vector<string> letterCombinations(string digits)
     {
         vector<string> ans;
-        int len = digits.size();
-        for (char ch : digits)
+        for (char c : digits)
         {
-            for ()
+            if (num2letter->first == c)
+            {
+                for (char letter : num2letter->second)
+                    ans.emplace_back(letter);
+            }
         }
     }
 };
