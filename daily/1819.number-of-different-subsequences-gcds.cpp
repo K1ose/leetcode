@@ -31,6 +31,8 @@
 
 #include <iostream>
 #include <vector>
+#include <cmath>
+#include <algorithm>
 using namespace std;
 
 class Solution
@@ -38,12 +40,44 @@ class Solution
 public:
     int countDifferentSubsequenceGCDs(vector<int> &nums)
     {
-        // TODO
+        int ans = 0;
+        int max_val = *max_element(nums.begin(), nums.end());
+        vector<bool> has(max_val + 1, 0);
+        for (int x : nums)
+        {
+            has[x] = true;
+        }
+        for (int i = 1; i <= max_val; i++)
+        {
+            int g = 0; /* 0 和 任何数 x 的公约数都是 x */
+            /* 枚举 i 的倍数 j */
+            for (int j = i; j <= max_val && g != i; j += i)
+            {
+                /* 如果倍数 j 在 nums 中 */
+                if (has[j])
+                {
+                    g = __gcd(g, j); /* 更新最大公约数 */
+                }
+            }
+            if (g == i)
+                ++ans; // 找到一个答案
+        }
+        return ans;
     }
 };
 
 int main(int argc, char const *argv[])
 {
+    int n;
+    cin >> n;
 
+    vector<int> nums(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> nums[i];
+    }
+
+    Solution slt;
+    cout << slt.countDifferentSubsequenceGCDs(nums) << endl;
     return 0;
 }
