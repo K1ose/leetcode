@@ -37,7 +37,7 @@ class Solution
 public:
     bool isPathCrossing(string path)
     {
-        /* TODO */
+        /* TODO first */
         int vertical = 0, horizontal = 0;
         for (char c : path)
         {
