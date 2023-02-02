@@ -30,6 +30,7 @@ path[i] 为 'N'、'S'、'E' 或 'W' */
 #include <iostream>
 #include <stack>
 #include <vector>
+#include <unordered_set>
 using namespace std;
 
 class Solution
@@ -37,35 +38,34 @@ class Solution
 public:
     bool isPathCrossing(string path)
     {
-        /* TODO first */
-        int vertical = 0, horizontal = 0;
+        unordered_set<pair<int, int>> is_visited;
+        int hor = 0, ver = 0;
         for (char c : path)
         {
             switch (c)
             {
-            case 'S':
-                /* code */
-                vertical++;
-                break;
             case 'N':
-                vertical--;
+                ver++;
                 break;
-            case 'W':
-                horizontal++;
+            case 'S':
+                ver--;
                 break;
             case 'E':
-                horizontal--;
-                break;
+                hor++;
+            case 'W':
+                hor--;
             default:
                 break;
             }
-
-            if (vertical == 0 && horizontal == 0)
+            pair<int, int> cur_pos(hor, ver);
+            if (!is_visited.count(cur_pos))
             {
-                return true;
             }
+            else
+            {
+                return false;
+            };
         }
-        return false;
     }
 };
 
