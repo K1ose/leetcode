@@ -60,10 +60,11 @@ public:
             pair<int, int> cur_pos(hor, ver);
             if (!is_visited.count(cur_pos))
             {
+                /* TODO */
             }
             else
             {
-                return false;
+                return true;
             };
         }
     }
