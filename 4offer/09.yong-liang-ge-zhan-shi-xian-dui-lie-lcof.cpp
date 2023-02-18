@@ -21,13 +21,14 @@
 最多会对 appendTail、deleteHead 进行 10000 次调用 */
 #include <iostream>
 #include <vector>
+#include <stack>
 using namespace std;
 
 class CQueue
 {
 public:
-    stack<int> stk1;
-    stack<int> stk2;
+    stack<int> stk1; /* 用于入队的栈 */
+    stack<int> stk2; /* 用于出队的栈 */
 
     CQueue()
     {
@@ -35,6 +36,7 @@ public:
 
     void transfer()
     {
+        /* 如果入队栈不为空，说明要将里面的元素放置到出队栈中，并将入队栈对应元素弹出 */
         while (!stk1.empty())
         {
             stk2.push(stk1.top());
@@ -44,18 +46,22 @@ public:
 
     void appendTail(int value)
     {
+        /* 入队栈压入元素 */
         stk1.push(value);
     }
 
     int deleteHead()
     {
+        /* 如果出队栈为空 */
         if (stk2.empty())
         {
+            /* 如果入队栈也为空，则代表整个队列中没有元素，直接返回-1 */
             if (stk1.empty())
                 return -1;
+            /* 如果入队栈不为空，则将入队栈的元素放置到出队栈中 */
             transfer();
         }
-
+        /* 获取出队元素 */
         int val = stk2.top();
         stk2.pop();
         return val;

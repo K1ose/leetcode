@@ -22,36 +22,50 @@ minStack.min();   --> 返回 -2.
 
 #include <iostream>
 #include <vector>
+#include <stack>
 using namespace std;
-
-int main(int argc, char const *argv[])
-{
-
-    return 0;
-}
 
 class MinStack
 {
 public:
+    stack<int> stk;    /* 存放元素的栈 */
+    stack<int> minstk; /* 存放栈中当前最小元素的栈 */
+
     /** initialize your data structure here. */
     MinStack()
     {
+        minstk.push(INT32_MAX); /* min_stack初始化的时候，存放最大的元素，这样就不用对 minstk 进行判空了 */
     }
 
     void push(int x)
     {
+        /* 每次push元素时，最小栈和普通栈都要压入元素，但是最小栈中压入的是当前最小元素 */
+        stk.push(x);
+
+        if (x < minstk.top())
+        {
+            minstk.push(x);
+        }
+        else
+        {
+            minstk.push(minstk.top());
+        }
     }
 
     void pop()
     {
+        stk.pop();
+        minstk.pop();
     }
 
     int top()
     {
+        return stk.top();
     }
 
     int min()
     {
+        return minstk.top();
     }
 };
 
