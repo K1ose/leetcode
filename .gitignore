@@ -6,4 +6,6 @@
 !daily/*.cpp
 !4offer/
 !4offer/*.cpp
+!tools/
+!tools/*.h
 !README
