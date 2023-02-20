@@ -20,15 +20,16 @@ using namespace std;
 class Solution
 {
 public:
-    string replaceSpaces(string S, int length)
+    string replaceSpaces(string s)
     {
         string ans;
+        int length = s.size();
         for (int i = 0; i < length; i++)
         {
-            if (S[i] == ' ')
+            if (s[i] == ' ')
                 ans += "%20";
             else
-                ans += S[i];
+                ans += s[i];
         }
         return ans;
     }
@@ -43,7 +44,7 @@ public:
         return s;
     }
 
-    /* 不用库函数 */
+    /* 不用replace()函数 */
     string replaceSpace_without_library_func(string s)
     {
         int count = 0; // 统计空格的个数
