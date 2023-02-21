@@ -26,12 +26,24 @@ class Solution
 public:
     int findRepeatNumber(vector<int> &nums)
     {
-        set<int> my_set;
-        for (int i = 0; i < nums.size(); i++)
+        // set<int> my_set;
+        // for (int i = 0; i < nums.size(); i++)
+        // {
+        //     if (my_set.find(nums[i]) != my_set.end())
+        //     {
+        //         return nums[i];
+        //     }
+        //     my_set.insert(nums[i]);
+        // }
+
+        set<int> repeat;
+        for (int num : nums)
         {
-            if (my_set.find(nums[i]) != my_set.end())
-                return nums[i];
-            my_set.insert(nums[i]);
+            if (repeat.count(num) != 0)
+            {
+                return num;
+            }
+            repeat.emplace(num);
         }
     }
 };
