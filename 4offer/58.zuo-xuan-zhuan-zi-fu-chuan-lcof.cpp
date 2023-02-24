@@ -38,6 +38,27 @@ public:
         return s;
     }
 
+    /* 不使用reverse()库函数 */
+    void my_reverse(string &s, int start, int end)
+    {
+        while (start < end)
+        {
+            char temp = s[start];
+            s[start] = s[end];
+            s[end] = temp;
+            end--;
+            start++;
+        }
+    }
+
+    string reverseLeftWords_without_reverse(string s, int n)
+    {
+        my_reverse(s, 0, n - 1);
+        my_reverse(s, n, s.size() - 1);
+        my_reverse(s, 0, s.size() - 1);
+        return s;
+    }
+
     /* 拼接 */
     string reverseLeftWords_combine(string str, int n)
     {
@@ -56,6 +77,6 @@ int main(int argc, char const *argv[])
     string s;
     cin >> s >> n;
     Solution slt;
-    cout << slt.reverseLeftWords(s, n);
+    cout << slt.reverseLeftWords_without_reverse(s, n);
     return 0;
 }

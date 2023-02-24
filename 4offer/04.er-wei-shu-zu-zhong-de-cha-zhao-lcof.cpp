@@ -36,19 +36,27 @@ class Solution
 public:
     bool findNumberIn2DArray(vector<vector<int>> &matrix, int target)
     {
+        /* 如果给定的二维数组为空，则返回false */
         if (matrix.size() == 0 || matrix[0].size() == 0)
             return false;
 
+        /* 获取二维数组的行数和列数 */
         int m = matrix.size();
         int n = matrix[0].size();
 
+        /* 初始化要查找的元素为第一行的最后一个元素，每一行的最后一个元素是该行最大的元素，如果都比该元素大，那就对于下一行的最后一个元素。如果比该元素小，说明target可能就在该行，向左查找target即可 */
         int i = 0, j = n - 1;
+        /* 遍历二维数组 */
         while (i < m && j >= 0)
         {
+            /* 如果matrix[i][j]==target,则返回true */
             if (matrix[i][j] == target)
                 return true;
+
+            /* 利用二位数组在行和列上递增的特性，如果当前元素>target,则说明target在该元素的左侧 */
             if (matrix[i][j] > target)
                 --j;
+            /* 如果当前元素<target，则说明target在下侧 */
             else
                 ++i;
         }
@@ -58,13 +66,19 @@ public:
 
 int main(int argc, char const *argv[])
 {
-    int m, n;
-    cin >> m >> n;
-    vector<vector<int>> matrix(m, vector<int>(n));
-    for (int i = 0; i < m; i++)
-        for (int j = 0; j < n; j++)
-            cin >> matrix[i][j];
+    // int m, n;
+    // cin >> m >> n;
+    // vector<vector<int>> matrix(m, vector<int>(n));
+    // for (int i = 0; i < m; i++)
+    //     for (int j = 0; j < n; j++)
+    //         cin >> matrix[i][j];
 
+    vector<vector<int>> matrix = {
+        {1, 4, 7, 11, 15},
+        {2, 5, 8, 12, 19},
+        {3, 6, 9, 16, 22},
+        {10, 13, 14, 17, 24},
+        {18, 21, 23, 26, 30}};
     int target;
     cin >> target;
     Solution slt;
