@@ -54,6 +54,7 @@ struct TreeNode
 class Solution
 {
 public:
+    /* 双端队列 */
     vector<vector<int>> levelOrder(TreeNode *root)
     {
         vector<vector<int>> ans;
@@ -73,6 +74,8 @@ public:
                 {
                     TreeNode *cur_node = q.front();
                     q.pop();
+
+                    /* 如果当前flag为True,则从尾部入队，否则从头部入队 */
                     if (left_order)
                         dq.push_back(cur_node->val);
                     else
@@ -86,7 +89,7 @@ public:
                 }
                 /* 将当前层遍历元素集合 dp 放到返回数组中*/
                 ans.emplace_back(vector<int>{dq.begin(), dq.end()});
-                left_order = !left_order;
+                left_order = !left_order; /* 改变输出顺序 */
             }
         }
         return ans;

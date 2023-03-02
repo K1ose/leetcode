@@ -65,6 +65,24 @@ public:
         dfs(root);
         return root;
     }
+
+    /* other */
+    /*
+    特殊判断：空树的镜像翻转树仍然是本身
+    思路：翻转左子树后替换右子树，翻转右子树后替换左子树
+    */
+    TreeNode *mirrorTree2(TreeNode *root)
+    {
+        if (!root)
+        {
+            return nullptr;
+        }
+        TreeNode *left = mirrorTree2(root->left);
+        TreeNode *right = mirrorTree2(root->right);
+        left = root->left;
+        right = root->right;
+        return root;
+    }
 };
 
 int main(int argc, char const *argv[])

@@ -33,6 +33,7 @@ using namespace std;
 class Solution
 {
 public:
+    /* 滑动窗口：右指针遇到重复字符时，左指针跳到子串里第一个重复字符的位置，并且set把子串中重复字符前的字符去掉，右指针重新往右扩展 */
     int lengthOfLongestSubstring(string s)
     {
         unordered_set<char> mySet;

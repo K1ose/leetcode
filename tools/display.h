@@ -45,3 +45,21 @@ void print_umap(unordered_map<T1, T2> ums)
         cout << um.first << ": " << um.second << endl;
     }
 }
+
+struct ListNode
+{
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(NULL) {}
+};
+
+void print_list(ListNode *head)
+{
+    ListNode *p = head;
+    while (p)
+    {
+        cout << p->val << " ";
+        p = p->next;
+    }
+    cout << endl;
+}

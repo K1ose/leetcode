@@ -57,6 +57,30 @@ public:
         }
         return max_profit;
     }
+
+    /* 双指针（不固定窗口大小的窗口滑动） */
+    int maxProfit_doubleptr(vector<int> &prices)
+    {
+        int n = prices.size();
+        if (n <= 1)
+        {
+            return 0;
+        }
+        int left = 0, right = 0;
+        int max_profit = 0;
+        while (right < n)
+        {
+            int cur_profit = prices[right] - prices[left];
+            while (cur_profit < 0)
+            {
+                left = right;
+                right++;
+            }
+            max_profit = max(max_profit, cur_profit);
+            right++;
+        }
+        return max_profit;
+    }
 };
 
 int main(int argc, char const *argv[])
