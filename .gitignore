@@ -1,5 +1,7 @@
 *
 **/.vscode/
+!lcci/
+!lcci/*.cpp
 !ds/
 !ds/*.cpp
 !daily/
