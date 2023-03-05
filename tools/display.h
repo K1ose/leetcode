@@ -1,7 +1,6 @@
 #pragma once
-#include <iostream>
-#include <vector>
-#include <unordered_map>
+#include "struct.h"
+#include "program_head.h"
 using namespace std;
 
 template <typename T>
@@ -62,4 +61,34 @@ void print_list(ListNode *head)
         p = p->next;
     }
     cout << endl;
+}
+
+void print_tree(TreeNode *root)
+{
+    vector<vector<int>> ans;
+    queue<TreeNode *> q;
+    if (root)
+    {
+        q.push(root);
+        while (!q.empty())
+        {
+            int cur_size = q.size(); /* 记录队列数量，当前层级的结点数量 */
+            vector<int> level;
+
+            /* 遍历获取当前层级上的结点，将它们逐一出队，逐一加入孩子结点 */
+            for (int i = 0; i < cur_size; i++)
+            {
+                TreeNode *cur_node = q.front();
+                q.pop();
+                level.push_back(cur_node->val);
+
+                if (cur_node->left)
+                    q.push(cur_node->left);
+                if (cur_node->right)
+                    q.push(cur_node->right);
+            }
+            ans.push_back(level);
+        }
+    }
+    print_vec2d_matrix(ans);
 }
