@@ -13,3 +13,4 @@
 #include <string>
 #include <iomanip>
 #include <functional>
+#include <numeric>
