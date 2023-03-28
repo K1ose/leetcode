@@ -44,13 +44,21 @@ public:
             digits[dSize - 1]++;
             return digits;
         }
-        digits[dSize - 1] = 0;
-        for (int i = dSize - 2; i >= 0; i--)
+        int i = dSize - 1;
+        while (i >= 0 && digits[i] == 9)
         {
-            if (digits[i] == 9)
-            {
-            }
+            digits[i] = 0;
+            i--;
         }
+        if (i == -1)
+        {
+            digits.insert(digits.begin(), 1);
+        }
+        else
+        {
+            digits[i]++;
+        }
+        return digits;
     }
 };
 
@@ -65,7 +73,7 @@ int main(int argc, char const *argv[])
     }
 
     Solution slt;
-    slt.plusOne(digits);
+    print_vec1d_arr(slt.plusOne(digits));
 
     return 0;
 }
