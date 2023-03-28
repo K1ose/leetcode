@@ -42,8 +42,8 @@ for (int i = 0; i < k; i++) {
 -104 <= nums[i] <= 104
 nums 已按 升序 排列
  */
-#include <iostream>
-#include <vector>
+#include "../tools/program_head.h"
+#include "../tools/display.h"
 using namespace std;
 
 class Solution
@@ -51,24 +51,21 @@ class Solution
 public:
     int removeDuplicates(vector<int> &nums)
     {
-        int len = nums.size();
-
-        if (len == 0)
+        int nSize = nums.size();
+        if (nSize == 0)
             return 0;
 
-        int i = 0, j = 1, count = 0;
-        // TODO
-        while (i < len)
+        unordered_map<int, int> cnt;
+        for (int i = 0, j = 0; i < nSize; i++)
         {
-            if (nums[i] == nums[j])
-                j++;
-            else
+            if (!cnt.count(nums[i]))
             {
-                nums[++i] = nums[j];
-                count++;
+                nums[j] = nums[i];
+                j++;
             }
+            cnt[nums[i]]++;
         }
-        return count;
+        return cnt.size();
     }
 };
 
@@ -81,9 +78,7 @@ int main(int argc, char const *argv[])
         cin >> nums[i];
 
     Solution slt;
-    cout << slt.removeDuplicates(nums);
-
-    for (int i = 0; i < n; i++)
-        cout << nums[i] << " ";
+    cout << slt.removeDuplicates(nums) << endl;
+    print_vec1d_arr(nums);
     return 0;
 }

@@ -29,9 +29,8 @@
 0 <= digits[i] <= 9
  */
 
-#include <iostream>
-#include <vector>
-#include <string>
+#include "../tools/program_head.h"
+#include "../tools/display.h"
 using namespace std;
 
 class Solution
@@ -39,7 +38,19 @@ class Solution
 public:
     vector<int> plusOne(vector<int> &digits)
     {
-        // TODO
+        int dSize = digits.size();
+        if (digits[dSize - 1] != 9)
+        {
+            digits[dSize - 1]++;
+            return digits;
+        }
+        digits[dSize - 1] = 0;
+        for (int i = dSize - 2; i >= 0; i--)
+        {
+            if (digits[i] == 9)
+            {
+            }
+        }
     }
 };
 
@@ -56,10 +67,5 @@ int main(int argc, char const *argv[])
     Solution slt;
     slt.plusOne(digits);
 
-    for (int i = 0; i < digits.size(); i++)
-    {
-        cout << digits[i] << " ";
-    }
-    cout << endl;
     return 0;
 }
