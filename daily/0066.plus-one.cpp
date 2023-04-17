@@ -73,7 +73,7 @@ int main(int argc, char const *argv[])
     }
 
     Solution slt;
-    print_vec1d_arr(slt.plusOne(digits));
+    slt.plusOne(digits);
 
     return 0;
 }

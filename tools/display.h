@@ -3,9 +3,25 @@
 #include "program_head.h"
 using namespace std;
 
+int datatype;
+
 template <typename T>
 void print_vec1d_arr(vector<T> nums)
 {
+    /* TODO */
+    // if (is_same<T, int>::value)
+    // {
+    //     datatype = 1;
+    // }
+    // switch (expression)
+    // {
+    // case /* constant-expression */:
+    //     /* code */
+    //     break;
+
+    // default:
+    //     break;
+    // }
     for (int i = 0; i < nums.size(); i++)
     {
         cout << nums[i] << " ";

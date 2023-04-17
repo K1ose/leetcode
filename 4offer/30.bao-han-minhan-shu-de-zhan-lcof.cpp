@@ -41,6 +41,7 @@ public:
     {
         /* 每次push元素时，最小栈和普通栈都要压入元素，但是最小栈中压入的是当前最小元素 */
         stk.push(x);
+        int min_element = min(minstk.top(), x);
 
         if (x < minstk.top())
         {
