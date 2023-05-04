@@ -52,23 +52,18 @@ struct TreeNode
 class Solution
 {
 public:
-    void dfs(TreeNode *node, int targetSum, int &sum)
-    {
-        if (!node)
-            return;
-
-        sum += node->val;
-        if (!node->left && !node->right)
-            return targetSum == sum;
-
-        dfs(node->left, targetSum, sum);
-        dfs(node->right, targetSum, sum);
-    }
-
     bool hasPathSum(TreeNode *root, int targetSum)
     {
-        int sum = 0;
-        dfs(root, targetSum, sum);
+        if (!root)
+        {
+            return false;
+        }
+
+        if (!root->left && !root->right)
+        {
+            return targetSum == root->val;
+        }
+        return hasPathSum(root->left, targetSum - root->val) || hasPathSum(root->right, targetSum - root->val);
     }
 };
 
