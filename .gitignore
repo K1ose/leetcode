@@ -4,10 +4,15 @@
 !lcci/*.cpp
 !ds/
 !ds/*.cpp
-!daily/
-!daily/*.cpp
+!daily_cpp/
+!daily_cpp/*.cpp
 !4offer/
 !4offer/*.cpp
 !tools/
 !tools/*.h
+!daily_rust/
+!daily_rust/
+!daily_rust/src/
+!daily_rust/src/*.rs
+daily_rust/src/main.rs
 !README
