@@ -76,6 +76,21 @@ public:
         // for (int k = 0; k < m + n; k++)
         //     nums1[k] = ans[k];
     }
+
+    /* less space to used */
+    void merge_less_space(vector<int> &nums1, int m, vector<int> &nums2, int n)
+    {
+        int len = nums1.size() - 1;
+        m--, n--;
+        while (n >= 0)
+        {
+            while (m >= 0 && nums1[m] > nums2[n])
+            {
+                swap(nums1[len--], nums1[m--]);
+            }
+            swap(nums1[len--], nums2[n--]);
+        }
+    }
 };
 
 int main(int argc, char const *argv[])

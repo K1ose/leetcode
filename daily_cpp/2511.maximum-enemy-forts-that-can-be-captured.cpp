@@ -48,7 +48,7 @@ public:
         {
             if (forts[i] == 1 || forts[i] == -1) // 找到标记为起始或终止的点
             {
-                if (pre >= 0 &&  forts[i] != forts[pre]) // 如果当前位置i的forts[i]与先前记录起始或终点的值不一样，说明可包含
+                if (pre >= 0 && forts[i] != forts[pre]) // 如果当前位置i的forts[i]与先前记录起始或终点的值不一样，说明可包含
                 {
                     ans = max(ans, i - pre - 1); // 更新最大区间ans
                 }
