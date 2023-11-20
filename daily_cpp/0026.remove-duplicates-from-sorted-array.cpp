@@ -49,7 +49,7 @@ using namespace std;
 class Solution
 {
 public:
-    int removeDuplicates(vector<int> &nums)
+    int removeDuplicates_stupid(vector<int> &nums)
     {
         int nSize = nums.size();
         if (nSize == 0)
@@ -67,18 +67,36 @@ public:
         }
         return cnt.size();
     }
+
+    int removeDuplicates(vector<int> &nums)
+    {
+        int n = nums.size();
+        if (n == 1)
+        {
+            return 1;
+        }
+
+        int p = 0, q = 1;
+        while (p + 1 < n && q < n)
+        {
+            if (nums[p] != nums[q])
+            {
+                nums[p + 1] = nums[q];
+                p++;
+            }
+            else
+            {
+                q++;
+            }
+        }
+        return p + 1;
+    }
 };
 
 int main(int argc, char const *argv[])
 {
-    int n;
-    cin >> n;
-    vector<int> nums(n);
-    for (int i = 0; i < n; i++)
-        cin >> nums[i];
-
+    vector<int> nums = {1, 1};
     Solution slt;
     cout << slt.removeDuplicates(nums) << endl;
-    print_vec1d_arr(nums);
     return 0;
 }
