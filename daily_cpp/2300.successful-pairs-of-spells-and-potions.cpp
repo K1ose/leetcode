@@ -40,7 +40,7 @@ using namespace std;
 class Solution
 {
 public:
-    /* BruteForce： O(n) = n^2 */
+    /* BruteForce： O(n) = n^2  => RTL*/
     vector<int> successfulPairs_brute(vector<int> &spells, vector<int> &potions, long long success)
     {
         vector<int> pairs;
