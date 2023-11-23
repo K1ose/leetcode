@@ -1,1 +1,2 @@
-3
+
+    cout << slt.entityParser(text) << endl;
