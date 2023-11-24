@@ -68,7 +68,7 @@ struct ListNode
     ListNode(int x) : val(x), next(NULL) {}
 };
 
-void print_list(ListNode *head)
+void print_linklist(ListNode *head)
 {
     ListNode *p = head;
     while (p)
