@@ -3,7 +3,7 @@
 #include "program_head.h"
 
 template <typename T>
-int *deToBi(T num)
+vector<int> deToBi(T num)
 {
     vector<int> digits;
     stack<int> stk;
