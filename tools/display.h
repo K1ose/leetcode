@@ -61,12 +61,16 @@ void print_umap(unordered_map<T1, T2> ums)
     }
 }
 
-struct ListNode
+template <typename T>
+void print_uset(unordered_set<T> us)
 {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
+    cout << "set: ";
+    for (auto x : us)
+    {
+        cout << x << " ";
+    }
+    cout << endl;
+}
 
 void print_linklist(ListNode *head)
 {

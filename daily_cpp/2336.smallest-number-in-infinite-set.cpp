@@ -40,28 +40,83 @@ smallestInfiniteSet.popSmallest(); // 返回 5 ，并将其从集合中移除。
 #include "../tools/program_head.h"
 #include "../tools/display.h"
 using namespace std;
-
-class SmallestInfiniteSet
+class OtherSmallestInfiniteSet
 {
-private:
-    vector<int> nums;
-    int min_e;
-    int max_pop;
-
 public:
-    SmallestInfiniteSet()
+    OtherSmallestInfiniteSet()
     {
-        nums.resize(1000, 0);
+        _m.insert({INT_MAX, 1});
     }
 
     int popSmallest()
     {
-        print_vec1d_arr(nums);
+        // 获取right最小的一个区间的left
+        int ret = _m.begin()->second;
+        _m.begin()->second++;
+        // 区间不存在删除
+        if (_m.begin()->first < _m.begin()->second)
+        {
+            _m.erase(_m.begin());
+        }
+        return ret;
     }
 
     void addBack(int num)
     {
+        // 查找大于等于num的第一个右区间数
+        auto iter = _m.lower_bound(num);
+        // 已知right >= num，然后看left是否包含
+        if (iter->second <= num)
+        {
+            // num已经被包含存在
+            return;
+        }
+        else if (iter->second == num + 1)
+        {
+            // 扩展当前区间，相当于直接连接num这个数到iter区间
+            iter->second--;
+        }
+        else
+        {
+            // 独立单位大小的区间
+            _m.insert({num, num});
+        }
     }
+
+private:
+    std::map<int, int> _m; // rigtht->left
+    // 存取所有的区间{right,left}，按照right依次进行升序排序，各个区间单位[right,left]互不干扰
+};
+
+class SmallestInfiniteSet
+{
+public:
+    SmallestInfiniteSet() {}
+
+    int popSmallest()
+    {
+        if (s.empty())
+        {
+            int pop_e = min_e;
+            min_e++;
+            return pop_e;
+        }
+        int pop_e = *s.begin();
+        s.erase(s.begin());
+        return pop_e;
+    }
+
+    void addBack(int num)
+    {
+        if (num < min_e)
+        {
+            s.insert(num);
+        }
+    }
+
+private:
+    int min_e = 1;
+    set<int> s;
 };
 
 /**
@@ -74,6 +129,16 @@ public:
 int main(int argc, char const *argv[])
 {
     SmallestInfiniteSet *sis = new SmallestInfiniteSet();
-    sis->popSmallest();
+    cout << sis->popSmallest() << endl;
+    sis->addBack(1);
+    cout << sis->popSmallest() << endl;
+    cout << sis->popSmallest() << endl;
+    cout << sis->popSmallest() << endl;
+    sis->addBack(2);
+    cout << sis->popSmallest() << endl;
+    sis->addBack(2);
+    cout << sis->popSmallest() << endl;
+    cout << sis->popSmallest() << endl;
+
     return 0;
 }
