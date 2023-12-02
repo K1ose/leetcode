@@ -43,12 +43,28 @@ void print_vec2d_matrix(vector<vector<T>> matrix)
 }
 
 template <typename T1, typename T2>
+void print_pair(pair<T1, T2> p)
+{
+    cout << p.first << " " << p.second << endl;
+}
+
+template <typename T1, typename T2>
 void print_umap_second_vec(unordered_map<T1, vector<T2>> ums)
 {
     for (auto um : ums)
     {
         cout << um.first << ": ";
         print_vec1d_arr(um.second);
+    }
+}
+
+template <typename T1, typename T2, typename T3>
+void print_umap_second_pair(unordered_map<T1, pair<T1, T2>> ums)
+{
+    for (auto um : ums)
+    {
+        cout << um.first << ": ";
+        print_pair(um.second);
     }
 }
 

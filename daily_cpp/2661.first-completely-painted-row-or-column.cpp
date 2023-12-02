@@ -40,16 +40,11 @@ class Solution
 public:
     int firstCompleteIndex(vector<int> &arr, vector<vector<int>> &mat)
     {
-        /* TODO */
         int m = mat.size();
-        // cout << m << endl;
         int n = mat[0].size();
-        // cout << n << endl;
 
-        vector<int> rows(m, n); /* there are m rows, n elements in every row */
-        vector<int> cols(n, m); /* there are n cols, m elements in every column */
-        // print_vec1d_arr(rows);
-        // print_vec1d_arr(cols);
+        vector<int> rows(m, n);
+        vector<int> cols(n, m);
         unordered_map<int, pair<int, int>> map_mat;
         unordered_map<int, int> map_arr;
         for (int i = 0; i < m * n; i++)
@@ -71,27 +66,23 @@ public:
         {
             int cur_i = map_mat[x].first;
             int cur_j = map_mat[x].second;
-            rows[cur_j]--; /* map[2]={0,1}, map[2].second=1, rows[1]=*/
-            cols[cur_i]--; /* map[2]={0,1}, map[2].first=0, rows[1]=*/
-            if (rows[cur_j] == 0)
+            rows[cur_i]--;
+            cols[cur_j]--;
+            if (rows[cur_i] == 0)
             {
-                for (int i = 0; i < n; i++)
+                for (int j = 0; j < n; j++)
                 {
-                    min1 = min(min1, mat[i][cur_j]);
+                    min1 = min(min1, mat[cur_i][j]);
                 }
-                return min1 < min2 ? map_arr[min1] : map_arr[min2];
             }
-            if (cols[cur_i] == 0)
+            if (cols[cur_j] == 0)
             {
                 for (int i = 0; i < m; i++)
                 {
-                    min2 = min(min2, mat[cur_i][i]);
+                    min2 = min(min2, mat[i][cur_j]);
                 }
-                return min1 < min2 ? map_arr[min1] : map_arr[min2];
             }
-            print_vec1d_arr(rows);
-            print_vec1d_arr(cols);
-            cout << endl;
+            return min1 < min2 ? map_arr[min1] : map_arr[min2];
         }
         return 1;
     }
@@ -106,6 +97,6 @@ int main(int argc, char const *argv[])
     // vector<vector<int>> mat = {{3, 2, 5}, {1, 4, 6}, {8, 7, 9}};
     vector<vector<int>> mat = {{1, 4}, {2, 3}};
 
-    slt.firstCompleteIndex(arr, mat);
+    cout << slt.firstCompleteIndex(arr, mat) << endl;
     return 0;
 }
