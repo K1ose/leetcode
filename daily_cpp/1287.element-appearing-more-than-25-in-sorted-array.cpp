@@ -32,9 +32,9 @@ public:
     {
         int n = arr.size();
         int cnt = 0, cur = arr[0];
-        for (auto x : arr)
+        for (int i = 0; i < n; i++)
         {
-            if (x == cur)
+            if (arr[i] == cur)
             {
                 cnt++;
                 if (cnt * 4 > n)
@@ -46,7 +46,7 @@ public:
             else
             {
                 cnt = 1;
-                continue;
+                cur = arr[i];
             }
         }
         return -1;
