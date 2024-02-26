@@ -15,3 +15,4 @@
 #include <functional>
 #include <numeric>
 #include <type_traits>
+#include <ranges>
