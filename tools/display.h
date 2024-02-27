@@ -99,32 +99,79 @@ void print_linklist(ListNode *head)
     cout << endl;
 }
 
-void print_tree(TreeNode *root)
+vector<int> levelOrderToVector(TreeNode *root)
 {
-    vector<vector<int>> ans;
+    if (!root)
+        return {};
+
+    vector<int> result;
     queue<TreeNode *> q;
-    if (root)
+    q.push(root);
+
+    while (!q.empty())
     {
-        q.push(root);
-        while (!q.empty())
+        auto node = q.front();
+        q.pop();
+
+        if (node == nullptr)
         {
-            int cur_size = q.size(); /* 记录队列数量，当前层级的结点数量 */
-            vector<int> level;
+            result.push_back(INT_MIN);
+            continue;
+        }
 
-            /* 遍历获取当前层级上的结点，将它们逐一出队，逐一加入孩子结点 */
-            for (int i = 0; i < cur_size; i++)
-            {
-                TreeNode *cur_node = q.front();
-                q.pop();
-                level.push_back(cur_node->val);
+        result.push_back(node->val);
 
-                if (cur_node->left)
-                    q.push(cur_node->left);
-                if (cur_node->right)
-                    q.push(cur_node->right);
-            }
-            ans.push_back(level);
+        if (node->left || node->right || !q.empty())
+        {
+            q.push(node->left);
+            q.push(node->right);
         }
     }
-    print_vec2d_matrix(ans);
+
+    return result;
+}
+
+void printGivenLevel(const vector<int> &vec, int level, int depth)
+{
+    int spaces = pow(2, depth - level) - 1;
+    int numElements = pow(2, level - 1);
+    int startIdx = pow(2, level - 1) - 1;
+    int endIdx = startIdx + numElements;
+
+    for (int i = startIdx; i < endIdx && i < vec.size(); ++i)
+    {
+        cout << string(spaces, ' ');
+        if (vec[i] != INT_MIN)
+            cout << vec[i];
+        else
+            cout << " ";
+        cout << string(spaces, ' ');
+        if (i < endIdx - 1)
+            cout << " ";
+    }
+    cout << endl;
+}
+
+void print_tree(const vector<int> &vec)
+{
+    int depth = ceil(log2(vec.size() + 1));
+    for (int level = 1; level <= depth; ++level)
+    {
+        printGivenLevel(vec, level, depth);
+        if (level < depth)
+        {
+            // Print branch for non-last levels
+            int spacesBetweenBranches = pow(2, depth - level) - 1;
+            int branches = pow(2, level - 1);
+            for (int j = 0; j < branches && (j * spacesBetweenBranches * 2 + branches - 1) < vec.size(); ++j)
+            {
+                cout << string((spacesBetweenBranches + 1) / 2, ' ') << "/";
+                cout << string(spacesBetweenBranches, ' ') << "\\";
+                cout << string((spacesBetweenBranches + 1) / 2, ' ');
+                if (j < branches - 1)
+                    cout << " ";
+            }
+            cout << endl;
+        }
+    }
 }

@@ -99,5 +99,6 @@ int main(int argc, char const *argv[])
     TreeNode *root = buildTree(nums);
     Solution slt;
     print_vec2d_matrix(slt.closestNodes(root, queries));
+    print_tree(levelOrderToVector(root));
     return 0;
 }
