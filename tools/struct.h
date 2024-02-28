@@ -4,7 +4,7 @@
 
 /*   Definition for a binary tree node.
  */
-typedef struct TreeNode
+struct TreeNode
 {
     int val;
     TreeNode *left;
