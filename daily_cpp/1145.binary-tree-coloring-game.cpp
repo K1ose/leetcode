@@ -56,7 +56,6 @@ class Solution
 public:
     bool btreeGameWinningMove(TreeNode *root, int n, int x)
     {
-        /* TODO: done */
         int lsz, rsz;
         function<int(TreeNode *)> dfs = [&](TreeNode *node)
         {
