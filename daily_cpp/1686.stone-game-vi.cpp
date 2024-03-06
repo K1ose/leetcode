@@ -56,7 +56,6 @@ public:
     /* 注意读题，Alice是知道Bob的评分标准的，所以还要考虑对方的分值，不能只考虑自己的分值 */
     int stoneGameVI(vector<int> &aliceValues, vector<int> &bobValues)
     {
-        // TODO
 
         int ans;
         int alice_count = 0, bob_count = 0;

@@ -38,7 +38,6 @@ class Solution
 {
 public:
     static constexpr int mod = 1E9 + 7;
-    /* TODO */
     int dieSimulator(int n, vector<int> &rollMax)
     {
         vector d(n + 1, vector<int>(6, 0));

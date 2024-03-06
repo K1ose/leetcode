@@ -34,7 +34,6 @@ using namespace std;
 class Solution
 {
 public:
-    // TODO
     int maxValue_math(int n, int index, int maxSum)
     {
         double left = index;
