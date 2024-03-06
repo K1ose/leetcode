@@ -2,21 +2,15 @@
 #include "display.h"
 #include "program_head.h"
 
-template <typename T>
-vector<int> deToBi(T num)
+vector<int> deToBi(int num)
 {
     vector<int> digits;
-    stack<int> stk;
-    while (num != 0)
+
+    for (; num; num >>= 1)
     {
-        stk.push(num % 2);
-        num = num / 2;
+        digits.push_back(num & 1);
     }
-    while (!stk.empty())
-    {
-        digits.push_back(stk.top());
-        stk.pop();
-    }
+
     return digits;
 }
 
