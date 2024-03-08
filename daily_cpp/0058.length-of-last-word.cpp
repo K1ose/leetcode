@@ -44,6 +44,7 @@ public:
     {
         string ans;
         int n = s.size();
+
         while (n--)
         {
             /* 如果不是空格就计入 */
